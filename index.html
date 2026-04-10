@@ -343,7 +343,7 @@ footer a:hover{text-decoration:underline}
       </div>
       <div style="display:flex;flex-direction:column;gap:.6rem;min-width:260px">
         <div class="sheet-input-row">
-          <input type="text" id="sheetId" class="sheet-input" placeholder="Google Sheet ID"/>
+          <input type="text" id="sheetId" class="sheet-input" placeholder="Google Sheet ID" value="1y1zULqDQi29Y3B17Z9T5dFbG4eUM3NyF3F-5M_4lc14"/>
           <button class="btn-refresh" onclick="loadFromSheet()">Load ↻</button>
         </div>
         <p style="font-size:.75rem;color:var(--grey)">Sheet must be publicly visible ("Anyone with link can view")</p>
@@ -581,6 +581,7 @@ footer a:hover{text-decoration:underline}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);});
+window.addEventListener('load',()=>{loadFromSheet();});
 function toggleNav(){document.getElementById('nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('nav-links').classList.remove('open'));});
 const observer=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible')}});},{threshold:.12});
