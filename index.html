@@ -334,56 +334,11 @@ footer a:hover{text-decoration:underline}
       <div class="section-tag">Inter-UC Competition</div>
       <h2 class="section-title">Sports Leagues</h2>
       <div class="section-divider"></div>
-      <p class="section-sub">Live standings for all inter-UC sports leagues. Connect a Google Sheet to keep results up to date automatically.</p>
+      <p class="section-sub">Live standings for all inter-UC sports leagues, updated automatically.</p>
     </div>
-    <div class="sheet-setup reveal">
-      <div class="sheet-setup-text">
-        <h4>🔗 Connect Your Google Sheet</h4>
-        <p>Paste your public Google Sheet ID below. Sheet tabs must be named: <strong>Football</strong>, <strong>Volleyball</strong>, <strong>Basketball</strong>. Columns: Team, P, W, D, L, GF, GA, Pts.</p>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:.6rem;min-width:260px">
-        <div class="sheet-input-row">
-          <input type="text" id="sheetId" class="sheet-input" placeholder="Google Sheet ID" value="1y1zULqDQi29Y3B17Z9T5dFbG4eUM3NyF3F-5M_4lc14"/>
-          <button class="btn-refresh" onclick="loadFromSheet()">Load ↻</button>
-        </div>
-        <p style="font-size:.75rem;color:var(--grey)">Sheet must be publicly visible ("Anyone with link can view")</p>
-      </div>
-    </div>
-    <div class="tabs reveal">
-      <button class="tab-btn active" onclick="switchTab('football',event)">⚽ Football</button>
-      <button class="tab-btn" onclick="switchTab('volleyball',event)">🏐 Volleyball</button>
-      <button class="tab-btn" onclick="switchTab('basketball',event)">🏀 Basketball</button>
-    </div>
-    <div id="panel-football" class="sport-panel active reveal">
-      <table class="league-table"><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>GF</th><th>GA</th><th>GD</th><th>Pts</th></tr></thead>
-      <tbody id="body-football">
-        <tr><td><span class="rank-badge rank-1">1</span></td><td>AUC</td><td>6</td><td>5</td><td>1</td><td>0</td><td>14</td><td>4</td><td>+10</td><td class="pts">16</td></tr>
-        <tr><td><span class="rank-badge rank-2">2</span></td><td>UCU</td><td>6</td><td>4</td><td>0</td><td>2</td><td>10</td><td>7</td><td>+3</td><td class="pts">12</td></tr>
-        <tr><td><span class="rank-badge rank-3">3</span></td><td>EUC</td><td>6</td><td>3</td><td>1</td><td>2</td><td>9</td><td>8</td><td>+1</td><td class="pts">10</td></tr>
-        <tr><td><span class="rank-badge rank-other">4</span></td><td>LUC</td><td>6</td><td>2</td><td>2</td><td>2</td><td>8</td><td>8</td><td>0</td><td class="pts">8</td></tr>
-        <tr><td><span class="rank-badge rank-other">5</span></td><td>UCR</td><td>6</td><td>2</td><td>0</td><td>4</td><td>6</td><td>11</td><td>-5</td><td class="pts">6</td></tr>
-        <tr><td><span class="rank-badge rank-other">6</span></td><td>UCM</td><td>6</td><td>0</td><td>0</td><td>6</td><td>2</td><td>11</td><td>-9</td><td class="pts">0</td></tr>
-      </tbody></table>
-      <p class="sheet-note">📊 Sample data shown — connect a Google Sheet above to load live standings.</p>
-    </div>
-    <div id="panel-volleyball" class="sport-panel reveal">
-      <table class="league-table"><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>SF</th><th>SA</th><th>SD</th><th>Pts</th></tr></thead>
-      <tbody id="body-volleyball">
-        <tr><td><span class="rank-badge rank-1">1</span></td><td>UCU</td><td>5</td><td>5</td><td>0</td><td>0</td><td>15</td><td>3</td><td>+12</td><td class="pts">15</td></tr>
-        <tr><td><span class="rank-badge rank-2">2</span></td><td>AUC</td><td>5</td><td>3</td><td>0</td><td>2</td><td>10</td><td>8</td><td>+2</td><td class="pts">9</td></tr>
-        <tr><td><span class="rank-badge rank-3">3</span></td><td>UCR</td><td>5</td><td>2</td><td>0</td><td>3</td><td>7</td><td>10</td><td>-3</td><td class="pts">6</td></tr>
-        <tr><td><span class="rank-badge rank-other">4</span></td><td>LUC</td><td>5</td><td>0</td><td>0</td><td>5</td><td>2</td><td>13</td><td>-11</td><td class="pts">0</td></tr>
-      </tbody></table>
-      <p class="sheet-note">📊 Sample data shown — connect a Google Sheet above to load live standings.</p>
-    </div>
-    <div id="panel-basketball" class="sport-panel reveal">
-      <table class="league-table"><thead><tr><th>#</th><th>Team</th><th>P</th><th>W</th><th>D</th><th>L</th><th>PF</th><th>PA</th><th>PD</th><th>Pts</th></tr></thead>
-      <tbody id="body-basketball">
-        <tr><td><span class="rank-badge rank-1">1</span></td><td>EUC</td><td>4</td><td>4</td><td>0</td><td>0</td><td>320</td><td>240</td><td>+80</td><td class="pts">12</td></tr>
-        <tr><td><span class="rank-badge rank-2">2</span></td><td>AUC</td><td>4</td><td>2</td><td>0</td><td>2</td><td>280</td><td>270</td><td>+10</td><td class="pts">6</td></tr>
-        <tr><td><span class="rank-badge rank-3">3</span></td><td>UCG</td><td>4</td><td>0</td><td>0</td><td>4</td><td>220</td><td>310</td><td>-90</td><td class="pts">0</td></tr>
-      </tbody></table>
-      <p class="sheet-note">📊 Sample data shown — connect a Google Sheet above to load live standings.</p>
+    <input type="hidden" id="sheetId" value="1y1zULqDQi29Y3B17Z9T5dFbG4eUM3NyF3F-5M_4lc14"/>
+    <div class="reveal">
+      <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSFd5J9ODnrOrURzy4VmN_5UBP_rLeVg7vsIb1yzVDmrNDPlmndantDGvNBtQvMYH6uwdakfDzTruLn/pubhtml?gid=0&single=true&widget=true&headers=false" style="width:100%;height:500px;border:none;border-radius:4px;"></iframe>
     </div>
   </div>
 </section>
@@ -457,7 +412,7 @@ footer a:hover{text-decoration:underline}
         <div class="apply-steps">
           <div class="apply-step reveal"><div class="step-num">1</div><div class="step-content"><h4>Check Eligibility</h4><p>You must be a current student at one of the 11 UCSRN member University Colleges and able to commit to the full academic year.</p></div></div>
           <div class="apply-step reveal" style="transition-delay:.1s"><div class="step-num">2</div><div class="step-content"><h4>Attend an Info Session</h4><p>Join one of our online or in-person info sessions where current board members explain the roles, time commitment, and answer your questions.</p></div></div>
-          <div class="apply-step reveal" style="transition-delay:.2s"><div class="step-num">3</div><div class="step-content"><h4>Submit Your Application</h4><p>Send your motivation letter and CV to <a href="mailto:treasurer@ucsrn.nl" style="color:var(--orange);font-weight:600"><span class="__cf_email__" data-cfemail="89ebe6e8fbedc9fceafafbe7a7e7e5">[email&#160;protected]</span></a> before the deadline.</p></div></div>
+          <div class="apply-step reveal" style="transition-delay:.2s"><div class="step-num">3</div><div class="step-content"><h4>Submit Your Application</h4><p>Send your motivation letter and CV to <a href="mailto:info@ucsrn.nl" style="color:var(--orange);font-weight:600">info@ucsrn.nl</a> before the deadline.</p></div></div>
           <div class="apply-step reveal" style="transition-delay:.3s"><div class="step-num">4</div><div class="step-content"><h4>Interview Round</h4><p>Shortlisted candidates are invited for a short interview with the outgoing board and Advisory Body members.</p></div></div>
           <div class="apply-step reveal" style="transition-delay:.4s"><div class="step-num">5</div><div class="step-content"><h4>Election at General Assembly</h4><p>Final candidates are presented at the GA, where member associations vote. Results are announced at the end of the Assembly.</p></div></div>
         </div>
@@ -481,83 +436,10 @@ footer a:hover{text-decoration:underline}
       <div class="section-divider"></div>
       <p class="section-sub">Submit your travel expenses for UCSRN General Assemblies or events. One submission per event, please.</p>
     </div>
-    <div class="form-outer reveal">
-      <div class="form-notice">📎 For OV-chipkaart expenses, we only accept a <strong>PDF excerpt from the NS website or OV-chipkaart website</strong>. Please submit once per event — do not combine multiple events in one form. Maximum file size: 10 MB (JPG, PNG, or PDF).</div>
-      <form id="reimburse-form" action="https://formspree.io/f/xjgpqnnv" method="POST" enctype="multipart/form-data">
-        <div class="form-grid">
-          <div class="form-section-title">Personal Information</div>
-          <div class="form-group"><label>First Name *</label><input type="text" name="first_name" placeholder="e.g. Anna" required/></div>
-          <div class="form-group"><label>Last Name *</label><input type="text" name="last_name" placeholder="e.g. de Vries" required/></div>
-          <div class="form-group"><label>Email Address *</label><input type="email" name="email" placeholder="your@email.com" required/></div>
-          <div class="form-group"><label>University College *</label>
-            <select name="uc" required>
-              <option value="" disabled selected>Select your UC</option>
-              <option>Amsterdam University College (AUC)</option>
-              <option>University College Utrecht (UCU)</option>
-              <option>University College Roosevelt (UCR)</option>
-              <option>Leiden University College (LUC)</option>
-              <option>University College Maastricht (UCM)</option>
-              <option>Erasmus University College (EUC)</option>
-              <option>University College Groningen (UCG)</option>
-              <option>UCTwente</option><option>UCTilburg</option>
-              <option>University Campus Fryslân (UCF)</option>
-              <option>University College Venlo (UCV)</option>
-            </select>
-          </div>
-          <div class="form-divider"></div>
-          <div class="form-section-title">Event Details</div>
-          <div class="form-group full"><label>Event Name *</label><input type="text" name="event_name" placeholder="e.g. UCSRN General Assembly – May 2025" required/></div>
-          <div class="form-group"><label>Event Date *</label><input type="date" name="event_date" required/></div>
-          <div class="form-group"><label>Event Type *</label>
-            <select name="event_type" required>
-              <option value="" disabled selected>Select type</option>
-              <option>General Assembly (GA)</option>
-              <option>Social Committee Event</option>
-              <option>Academic Committee Event</option>
-              <option>UCSRN Tournament</option>
-              <option>Executive Board Meeting</option>
-              <option>Other UCSRN Event</option>
-            </select>
-          </div>
-          <div class="form-divider"></div>
-          <div class="form-section-title">Travel &amp; Expenses</div>
-          <div class="form-group"><label>Travel From *</label><input type="text" name="travel_from" placeholder="e.g. Utrecht Centraal" required/></div>
-          <div class="form-group"><label>Travel To *</label><input type="text" name="travel_to" placeholder="e.g. Amsterdam Centraal" required/></div>
-          <div class="form-group"><label>Mode of Transport *</label>
-            <select name="transport" required>
-              <option value="" disabled selected>Select mode</option>
-              <option>OV-chipkaart (NS train)</option>
-              <option>OV-chipkaart (other)</option>
-              <option>Personal car (per km)</option>
-              <option>Bus / Tram / Metro</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="form-group"><label>Total Amount (€) *</label><input type="number" name="amount" min="0.01" step="0.01" placeholder="e.g. 14.50" required/></div>
-          <div class="form-group full"><label>Additional Notes</label><textarea name="notes" placeholder="Any additional context about your travel or expenses…"></textarea></div>
-          <div class="form-divider"></div>
-          <div class="form-section-title">Bank Details</div>
-          <div class="form-group full"><label>IBAN *</label><input type="text" name="iban" placeholder="NL00 BANK 0000 0000 00" required oninput="formatIBAN(this)"/><span class="iban-hint">Dutch IBAN starts with NL, followed by 2 check digits and account number.</span></div>
-          <div class="form-group"><label>Account Holder Name *</label><input type="text" name="account_name" placeholder="Name as on bank account" required/></div>
-          <div class="form-group"><label>BIC / SWIFT (optional)</label><input type="text" name="bic" placeholder="e.g. INGBNL2A"/></div>
-          <div class="form-divider"></div>
-          <div class="form-section-title">Receipt Upload</div>
-          <div class="form-group full">
-            <div class="file-area" id="file-area">
-              <input type="file" name="receipt" accept=".jpg,.jpeg,.png,.pdf" onchange="handleFile(this)"/>
-              <div class="file-icon">📎</div>
-              <div class="file-label"><strong>Click to upload</strong> or drag and drop your receipt</div>
-              <div class="file-note">JPG, PNG or PDF · Max 10 MB</div>
-              <div id="file-chosen" style="margin-top:.5rem;font-size:.85rem;color:var(--orange);font-weight:600"></div>
-            </div>
-          </div>
-          <div class="form-group full"><button type="submit" class="btn-submit">Submit Reimbursement Request →</button></div>
-        </div>
-      </form>
-      <div class="form-success" id="form-success">
-        <h3>✅ Request Submitted!</h3>
-        <p>Thank you! Your reimbursement request has been received. The Treasurer will process it within 10 working days. Questions? Email <a href="mailto:treasurer@ucsrn.nl" style="color:var(--orange);font-weight:600"><span class="__cf_email__" data-cfemail="592d2b3c382a2c2b3c2b192c3a2a2b37773735">[email&#160;protected]</span></a></p>
-      </div>
+    <div class="form-outer reveal" style="text-align:center;padding:3rem 2rem;">
+      <div class="form-notice">📎 For OV-chipkaart expenses, we only accept a <strong>PDF excerpt from the NS website or OV-chipkaart website</strong>. Please submit once per event — do not combine multiple events in one form.</div>
+      <p style="margin:2rem 0 1rem;font-size:1rem;color:#555;line-height:1.7;">Click the button below to email your reimbursement request directly to the Treasurer. Please attach your <strong>receipt or PDF</strong> and include your name, event, travel details and IBAN in the email.</p>
+      <a href="mailto:treasurer@ucsrn.nl?subject=Travel%20Reimbursement%20Request&body=Hi%20Treasurer%2C%0A%0AI%20would%20like%20to%20submit%20a%20travel%20reimbursement%20request%20for%20the%20following%3A%0A%0AName%3A%0AUniversity%20College%3A%0AEvent%3A%0ADate%3A%0ATravel%20from%3A%0ATravel%20to%3A%0AMode%20of%20transport%3A%0ATotal%20amount%20(%E2%82%AC)%3A%0AIBAN%3A%0AAccount%20holder%20name%3A%0A%0APlease%20find%20my%20receipt%20attached.%0A%0AKind%20regards%2C" class="btn-primary" style="font-size:1rem;padding:1rem 2.5rem;">📧 Submit Reimbursement Request →</a>
     </div>
   </div>
 </section>
@@ -568,15 +450,16 @@ footer a:hover{text-decoration:underline}
     <h2 class="section-title" style="color:#fff">We'd Love to Hear From You</h2>
     <p>Questions, ideas, or just want to connect with the UC student community? Reach out to us.</p>
     <div class="contact-btns">
-      <a href="mailto:treasurer@ucsrn.nl" class="btn-dark">✉️ <span class="__cf_email__" data-cfemail="127b7c747d52677161607c3c7c7e">[email&#160;protected]</span></a>
-      <a href="mailto:treasurer@ucsrn.nl" class="btn-dark">🎓 <span class="__cf_email__" data-cfemail="ceaca1afbcaa8ebbadbdbca0e0a0a2">[email&#160;protected]</span></a>
-      <a href="mailto:treasurer@ucsrn.nl" class="btn-dark">🎉 <span class="__cf_email__" data-cfemail="384b48574c54515f504c784d5b4b4a56165654">[email&#160;protected]</span></a>
+      <a href="mailto:info@ucsrn.nl" class="btn-dark">✉️ info@ucsrn.nl</a>
+      <a href="https://instagram.com/ucsrn" target="_blank" class="btn-dark">📸 @ucsrn</a>
+      <a href="https://linkedin.com/company/ucsrn" target="_blank" class="btn-dark">💼 LinkedIn</a>
+      <a href="https://facebook.com/ucsrn" target="_blank" class="btn-dark">📘 @ucsrn</a>
     </div>
   </div>
 </section>
 
 <footer>
-  <p>© 2025 UCSRN — University College Student Representatives of the Netherlands &nbsp;·&nbsp; <a href="https://ucsrn.nl">ucsrn.nl</a> &nbsp;·&nbsp; <a href="mailto:treasurer@ucsrn.nl"><span class="__cf_email__" data-cfemail="9ff6f1f9f0dfeafcecedf1b1f1f3">[email&#160;protected]</span></a></p>
+  <p>© 2025 UCSRN — University College Student Representatives of the Netherlands &nbsp;·&nbsp; <a href="https://ucsrn.nl">ucsrn.nl</a> &nbsp;·&nbsp; <a href="mailto:info@ucsrn.nl">info@ucsrn.nl</a></p>
 </footer>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
