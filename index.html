@@ -438,7 +438,9 @@ footer a:hover{text-decoration:underline}
     </div>
     <div class="form-outer reveal">
       <div class="form-notice">📎 For OV-chipkaart expenses, we only accept a <strong>PDF excerpt from the NS website or OV-chipkaart website</strong>. Please submit once per event — do not combine multiple events in one form. Maximum file size: 10 MB (JPG, PNG, or PDF).</div>
-      <form id="reimburse-form" action="https://formspree.io/f/xjgpqnnv" method="POST" enctype="multipart/form-data">
+      <form id="reimburse-form">
+        <input type="hidden" name="access_key" value="90d39455-8394-48f2-9922-3e483fcda2cb"/>
+        <input type="hidden" name="subject" value="UCSRN Travel Reimbursement Request"/>
         <div class="form-grid">
           <div class="form-section-title">Personal Information</div>
           <div class="form-group"><label>First Name *</label><input type="text" name="first_name" placeholder="e.g. Anna" required/></div>
@@ -537,6 +539,27 @@ footer a:hover{text-decoration:underline}
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 window.addEventListener('scroll',()=>{document.getElementById('main-nav').classList.toggle('scrolled',window.scrollY>40);});
+document.getElementById('reimburse-form').addEventListener('submit',async function(e){
+  e.preventDefault();
+  const formData=new FormData(this);
+  const btn=this.querySelector('.btn-submit');
+  btn.textContent='Submitting…';
+  btn.disabled=true;
+  try{
+    const res=await fetch('https://api.web3forms.com/submit',{method:'POST',body:formData});
+    const data=await res.json();
+    if(data.success){
+      document.getElementById('reimburse-form').style.display='none';
+      document.getElementById('form-success').style.display='block';
+    }else{
+      throw new Error(data.message||'Submission failed');
+    }
+  }catch(err){
+    btn.textContent='Submit Reimbursement Request →';
+    btn.disabled=false;
+    alert('Submission failed: '+err.message+'\n\nPlease email your receipt directly to treasurer@ucsrn.nl');
+  }
+});
 window.addEventListener('load',()=>{loadFromSheet();});
 function toggleNav(){document.getElementById('nav-links').classList.toggle('open');}
 document.querySelectorAll('.nav-links a').forEach(a=>{a.addEventListener('click',()=>document.getElementById('nav-links').classList.remove('open'));});
